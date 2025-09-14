@@ -30,6 +30,7 @@
 
 
 4. Домен и днс.
-Исползование Cloudflare для заищит сервера
+Исползование Cloudflare для защиты сервера
 
-
+5. Настройка VPS (virtual private server)
+6. Настройка Java EE Server. Надо скачать Jakarta EE и настроить его чтобы использовать Cloudflare Authenticated Origin Pulls 
