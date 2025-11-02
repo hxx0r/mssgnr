@@ -1,14 +1,37 @@
+# server/CMakeLists.txt
 cmake_minimum_required(VERSION 3.10)
 project(MessengerServer)
 
-set(CMAKE_CXX_STANDARD 11)
+# Настройка C++ стандарта
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Поиск необходимых пакетов
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(Protobuf REQUIRED)
 
-# Генерация кода из .proto
-protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS protocol/messages.proto)
+# Генерация protobuf кода
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDS ../protocol/messages.proto)
 
-add_executable(server src/main.cpp ${PROTO_SRCS} ${PROTO_HDRS})
+# Исходные файлы сервера
+set(SERVER_SRCS
+    src/main.cpp
+    src/session.cpp
+    ${PROTO_SRCS}
+)
 
-target_link_libraries(server ${Boost_LIBRARIES} ${PROTOBUF_LIBRARIES} pthread)
+# Создание исполняемого файла
+add_executable(messenger_server ${SERVER_SRCS})
+
+# Подключение зависимостей
+target_link_libraries(messenger_server 
+    ${Boost_LIBRARIES}
+    ${Protobuf_LIBRARIES}
+    pthread
+)
+
+# Настройка include директорий
+target_include_directories(messenger_server PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_BINARY_DIR}  # для сгенерированных protobuf заголовков
+)
