@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.10)
+project(MessengerServer)
+
+set(CMAKE_CXX_STANDARD 11)
+
+find_package(Boost REQUIRED COMPONENTS system)
+find_package(Protobuf REQUIRED)
+
+# Генерация кода из .proto
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS protocol/messages.proto)
+
+add_executable(server src/main.cpp ${PROTO_SRCS} ${PROTO_HDRS})
+
+target_link_libraries(server ${Boost_LIBRARIES} ${PROTOBUF_LIBRARIES} pthread)

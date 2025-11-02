@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package messenger;
+
+message Envelope {
+  MessageType type = 1;
+  bytes payload = 2;
+  uint32 version = 3;
+}
+
+enum MessageType {
+  TEXT_MESSAGE = 0;
+  USER_JOIN = 1;
+  USER_LEAVE = 2;
+  ERROR = 3;
+}
+
+message TextMessage {
+  string sender = 1;
+  string content = 2;
+  int64 timestamp = 3;
+}
