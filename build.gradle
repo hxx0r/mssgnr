@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':shared:crypto')
+    implementation 'com.google.protobuf:protobuf-java:3.21.1'
+    implementation 'androidx.room:room-runtime:2.4.3'
+}
