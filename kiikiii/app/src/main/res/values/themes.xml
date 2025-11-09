@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Kiikiii" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">#854F6C</item>
+        <item name="colorPrimaryDark">#522B5B</item>
+        <item name="colorAccent">#FFFF</item>
+
+
+    </style>
+
+    <style name="Theme.Kiikiii" parent="Base.Theme.Kiikiii" />
+</resources>
